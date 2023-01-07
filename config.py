@@ -1,3 +1,4 @@
+import openai
 
 class Config(object):
     DEBUG = True
@@ -13,4 +14,4 @@ config = {
 }
 
 ## Enter your Open API Key here
-OPENAI_API_KEY = ''
+openai.api_key = "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"

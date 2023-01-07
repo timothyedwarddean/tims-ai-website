@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import config
+import openai
 
 def page_not_found(e):
   return render_template('404.html'), 404
@@ -16,118 +17,27 @@ def index():
 
 
 
-@app.route('/product-description', methods=["GET", "POST"])
+@app.route('/recipe-generator', methods=["GET", "POST"])
 def productDescription():
 
     if request.method == 'POST':
-        query = request.form['productDescription']
+        query = request.form['recipeDescription']
         print(query)
 
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-    return render_template('product-description.html', **locals())
-
-
-
-@app.route('/job-description', methods=["GET", "POST"])
-def jobDescription():
-
-    if request.method == 'POST':
-        query = request.form['jobDescription']
-        print(query)
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt="Write a recipe that contains bacon and jelly.",
+            temperature=0.5,
+            max_tokens=150,
+            top_p=1.0,
+            frequency_penalty=0.0,
+            presence_penalty=0.0
+            )
 
         prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        openAIAnswer = response
 
-    return render_template('job-description.html', **locals())
-
-
-
-@app.route('/tweet-ideas', methods=["GET", "POST"])
-def tweetIdeas():
-
-    if request.method == 'POST':
-        query = request.form['tweetIdeas']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-    return render_template('tweet-ideas.html', **locals())
-
-
-
-@app.route('/cold-emails', methods=["GET", "POST"])
-def coldEmails():
-
-    if request.method == 'POST':
-        query = request.form['coldEmails']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-    return render_template('cold-emails.html', **locals())
-
-
-
-@app.route('/social-media', methods=["GET", "POST"])
-def socialMedia():
-
-    if request.method == 'POST':
-        query = request.form['socialMedia']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-    return render_template('social-media.html', **locals())
-
-
-@app.route('/business-pitch', methods=["GET", "POST"])
-def businessPitch():
-
-    if request.method == 'POST':
-        query = request.form['businessPitch']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-    return render_template('business-pitch.html', **locals())
-
-
-@app.route('/video-ideas', methods=["GET", "POST"])
-def videoIdeas():
-
-    if request.method == 'POST':
-        query = request.form['videoIdeas']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-    return render_template('video-ideas.html', **locals())
-
-
-@app.route('/video-description', methods=["GET", "POST"])
-def videoDescription():
-
-    if request.method == 'POST':
-        query = request.form['videoDescription']
-        print(query)
-
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-    return render_template('video-description.html', **locals())
-
-
-
-
-
-
+    return render_template('recipe-generator.html', **locals())
 
 
 
