@@ -1,4 +1,5 @@
 import openai
+import os
 
 class Config(object):
     DEBUG = True
@@ -13,5 +14,5 @@ config = {
     'production': DevelopmentConfig
 }
 
-## Enter your Open API Key here
-openai.api_key = "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"
+openai.api_key = os.getenv('OPEN_AI_KEY')
+openai_key = openai.api_key

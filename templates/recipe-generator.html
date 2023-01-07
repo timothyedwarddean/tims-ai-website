@@ -6,7 +6,7 @@
 {% block body %}
 <main class="container">
   <div class="bg-light p-5 rounded mt-5">
-    <h1>🛍️ Generate Product Descriptions 🛍 ️</h1>
+    <h1>🍔 Generate Recipes 🥦 ️</h1>
     <p class="lead">
       Generate product descriptions for any types of products, simply enter the name and productdescription to get started.
     </p>
@@ -16,12 +16,19 @@
     <form class="" action="/recipe-generator" method="post">
 
       <div class="mb-3">
-        <label class="form-label">Product Title</label>
-        <input type="text" class="form-control" name="recipeDescription" placeholder="eg. Apple iPhone">
-        <div class="form-text">Enter the title of the Product you would like to receive a description for.</div>
+        <label class="form-label">Ingredient #1</label>
+        <input type="text" class="form-control" name="ingredientDescription1" placeholder="eg. Bacon">
+        <div class="form-text">Enter the first ingredient.</div>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-lg"> 💃 GET RECOMMENDATIONS</button>
+      <div class="mb-3">
+        <label class="form-label">Ingredient #2</label>
+        <input type="text" class="form-control" name="ingredientDescription2" placeholder="eg. Lettuce">
+        <div class="form-text">Enter the second ingredient.</div>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary btn-lg"> 🌮 GET RECOMMENDATIONS</button>
 
     </form>
   </div>

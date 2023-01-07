@@ -21,12 +21,12 @@ def index():
 def productDescription():
 
     if request.method == 'POST':
-        query = request.form['recipeDescription']
-        print(query)
+        query_1 = request.form['ingredientDescription1']
+        query_2 = request.form['ingredientDescription2']
 
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt="Write a recipe that contains bacon and jelly.",
+            prompt="Write a recipe for {} and {}.".format(query_1, query_2),
             temperature=0.5,
             max_tokens=150,
             top_p=1.0,
@@ -34,7 +34,7 @@ def productDescription():
             presence_penalty=0.0
             )
 
-        prompt = 'AI Suggestions for {} are:'.format(query)
+        prompt = 'AI Suggestions for {} and {} are:'.format(query_1, query_2)
         openAIAnswer = response
 
     return render_template('recipe-generator.html', **locals())
