@@ -34,8 +34,8 @@ def productDescription():
             presence_penalty=0.0
             )
 
-        prompt = 'AI Suggestions for {} and {} are:'.format(query_1, query_2)
-        openAIAnswer = response
+        prompt = 'AI Suggestions for {} and {} are:'.format(query_1.lower(), query_2.lower())
+        openAIAnswer = response['choices'][0]['text']
 
     return render_template('recipe-generator.html', **locals())
 
